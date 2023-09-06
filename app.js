@@ -5,6 +5,8 @@ import morgan from 'morgan';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
+const PORT = process.env.PORT
+console.log('IM listening on port' + ' '+ PORT)
 const app = express();
 //morgan middleware to use with debug
 app.use(morgan('tiny'))
@@ -21,9 +23,8 @@ app.get('/', (req, res) => {
 }); 
 
 
-let port= 4000;
-app.listen(port, ()=>{
+app.listen(PORT, ()=>{
     //runs only in dev mode
     //use DEBUG=* node app.js to display debug mode
-    debug(`listening on port ${chalk.green(port)}`);
+    debug(`listening on port ${chalk.bgRed(PORT)}`);
 } )

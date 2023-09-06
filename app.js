@@ -15,12 +15,25 @@ app.use(morgan('tiny'))  //app.use => declares use of middleware
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const sessionsRouter = express.Router();
+
 //look in public directory forst for any request
 app.use(express.static(path.join(__dirname, '/public/')));
 
 //app.set => set variables inside our environment app
 app.set('views', './src/views') 
 app.set('view engine', 'ejs') 
+
+sessionsRouter.route('/').get((req, res)=>{
+    res.send('hello sessions')
+})
+
+sessionsRouter.route('/1').get((req, res)=>{
+    res.send('hello single session')
+})
+
+app.use('/sessions', sessionsRouter);//middleware to handle session and
+
 
 app.get('/', (req, res) => { //app.get => send responses for GET requests
     res.render('index', {

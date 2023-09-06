@@ -1,10 +1,11 @@
 import express from 'express';
 import chalk  from 'chalk'; 
 import debug from 'debug';
-
+import morgan from 'morgan';
 
 const app = express();
-
+//morgan middleware to use with debug
+app.use(morgan('tiny'))
 app.get('/', (req, res) => {
     res.send('Hello World')
 }); 

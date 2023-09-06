@@ -23,7 +23,10 @@ app.set('views', './src/views')
 app.set('view engine', 'ejs') 
 
 app.get('/', (req, res) => { //app.get => send responses for GET requests
-    res.render('index', {title:"Globalmantics"})
+    res.render('index', {
+        title:"Globalmantics",
+        data: ['a', 'b', 'c']
+    })
 }); 
 
 

@@ -4,6 +4,8 @@ import debug from 'debug';
 import morgan from 'morgan';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import sessions from './src/data/sessions.json' assert { type: "json" };
+
 
 const PORT = process.env.PORT
 console.log('IM listening on port' + ' '+ PORT)
@@ -26,12 +28,7 @@ app.set('view engine', 'ejs')
 
 sessionsRouter.route('/').get((req, res)=>{
     res.render('sessions', {
-        sessions:[
-            {title:'Session 1', description: 'this is session 1'},
-            {title:'Session 2', description: 'this is session 2'},
-            {title:'Session 3', description: 'this is session 3'},
-            {title:'Session 4', description: 'this is session 4'},
-        ]
+        sessions
     })
 })
 

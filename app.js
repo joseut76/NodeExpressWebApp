@@ -5,11 +5,11 @@ import morgan from 'morgan';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import sessionsRouter from './src/routers/sessionsRouter.js';
+import adminRouter from './src/routers/adminRouter.js';
 
+const debugApp = debug('app')
+const PORT = process.env.PORT || 4000
 
-
-const PORT = process.env.PORT
-console.log('IM listening on port' + ' '+ PORT)
 const app = express();
 //morgan middleware to use with debug
 app.use(morgan('tiny'))  //app.use => declares use of middleware
@@ -28,8 +28,8 @@ app.set('view engine', 'ejs')
 
 
 
-app.use('/sessions', sessionsRouter);//middleware to handle session and
-
+app.use('/sessions', sessionsRouter);//middleware to handle session
+app.use('/admin', adminRouter);
 
 app.get('/', (req, res) => { //app.get => send responses for GET requests
     res.render('index', {
@@ -42,5 +42,5 @@ app.get('/', (req, res) => { //app.get => send responses for GET requests
 app.listen(PORT, ()=>{
     //runs only in dev mode
     //use DEBUG=* node app.js to display debug mode
-    debug(`listening on port ${chalk.bgRed(PORT)}`);
+    debugApp(`listening on port ${chalk.bgRed(PORT)}`);
 } )

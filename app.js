@@ -4,7 +4,8 @@ import debug from 'debug';
 import morgan from 'morgan';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import sessions from './src/data/sessions.json' assert { type: "json" };
+import sessionsRouter from './src/routers/sessionsRouter.js';
+
 
 
 const PORT = process.env.PORT
@@ -17,7 +18,6 @@ app.use(morgan('tiny'))  //app.use => declares use of middleware
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const sessionsRouter = express.Router();
 
 //look in public directory forst for any request
 app.use(express.static(path.join(__dirname, '/public/')));
@@ -26,15 +26,7 @@ app.use(express.static(path.join(__dirname, '/public/')));
 app.set('views', './src/views') 
 app.set('view engine', 'ejs') 
 
-sessionsRouter.route('/').get((req, res)=>{
-    res.render('sessions', {
-        sessions
-    })
-})
 
-sessionsRouter.route('/1').get((req, res)=>{
-    res.send('hello single session')
-})
 
 app.use('/sessions', sessionsRouter);//middleware to handle session and
 

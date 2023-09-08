@@ -8,10 +8,9 @@ const adminRouter = express.Router();
 
 adminRouter.route('/').get((req,res)=>{
     const url = "mongodb+srv://joseut76:uoFeCMnSWlRU9k2Y@cluster0.ziadrhk.mongodb.net?retryWrites=true&w=majority";
-    const dbName = 'Cluster0';//'globomantics';
+    const dbName = 'globomantics';
 
-    // async function run() {
-    async function mongo(){
+    (async function mongo(){
         let client;
         try {
             client = await MongoClient.connect(url)
@@ -25,8 +24,7 @@ adminRouter.route('/').get((req,res)=>{
             console.log(error.stack);
         }
         client.close();        
-    }
-    mongo();
+    })();
     
 });
 

@@ -115,7 +115,7 @@
 
 <section class="sec_include">
         <div class="container">
-<% sessions.map((session, index)=>{%>
+<% sessions.map((session, _id)=>{%>
     <div class="col-xs-12 col-sm-4 col-md-4 adj_text">
 
 
@@ -124,7 +124,7 @@
   <!-- limit the number of characters to 300 -->
 <p><%=session.description.slice(0,300)%></p>
 
-<a href="/sessions/<%=index%>" class="btn-oval">Learn More</a>
+<a href="/sessions/<%=session._id%>" class="btn-oval">Learn More</a>
 
 </div>
 <% }) %>

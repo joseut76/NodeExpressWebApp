@@ -1,4 +1,5 @@
 import passport from 'passport'
+// import localStrategy from './startegies/local.strategy'
 
 export default function passportConfig(app){
     app.use(passport.initialize())

@@ -1,7 +1,6 @@
 import express from 'express';
 import debug from "debug";
 import {MongoClient, ObjectId} from 'mongodb';
-import sessions from '../data/sessions.json' assert { type: "json" };
 
 const debugSession = debug('app:sessionsRouter')
 const sessionsRouter = express.Router();
@@ -25,9 +24,6 @@ sessionsRouter.route('/').get((req, res)=>{
         client.close();        
     })();
 
-    // res.render('sessions', {
-    //     sessions
-    // });
 });
 
 //get the id passed in the params

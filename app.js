@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import sessionsRouter from './src/routers/sessionsRouter.js';
 import adminRouter from './src/routers/adminRouter.js';
+import authRouter from './src/routers/authRouter.js';
 
 const debugApp = debug('app')
 const PORT = process.env.PORT || 4000
@@ -21,6 +22,8 @@ const __dirname = path.dirname(__filename);
 
 //look in public directory forst for any request
 app.use(express.static(path.join(__dirname, '/public/')));
+app.use(express.json())
+app.use(express.urlencoded({extended: false}));
 
 //app.set => set variables inside our environment app
 app.set('views', './src/views') 
@@ -30,6 +33,7 @@ app.set('view engine', 'ejs')
 
 app.use('/sessions', sessionsRouter);//middleware to handle session
 app.use('/admin', adminRouter);
+app.use('/auth', authRouter);
 
 app.get('/', (req, res) => { //app.get => send responses for GET requests
     res.render('index', {

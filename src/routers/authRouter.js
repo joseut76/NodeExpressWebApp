@@ -2,6 +2,7 @@ import express from 'express';
 import debug from "debug";
 const debugAuth = debug('app:authRouter')
 import {MongoClient} from 'mongodb';
+import passport from 'passport';
 
 const authRouter = express.Router();
 
@@ -32,6 +33,14 @@ authRouter.route('/signUp').post((req, res)=>{
     })();
 });
 
+authRouter.route('/signin')
+.get((req, res)=>{
+res.render('/signin')
+})
+.post(passport.authenticate('local', {
+    successRedirect: '/auth/profile',
+    failureMessage:'/'
+}))
 
 authRouter.route('/profile').get((req, res)=>{
     res.json(req.user);

@@ -5,6 +5,13 @@ import {MongoClient, ObjectId} from 'mongodb';
 const debugSession = debug('app:sessionsRouter')
 const sessionsRouter = express.Router();
 
+sessionsRouter.use((req, res, next)=>{
+    if(req.user){
+        next()
+    }else {
+        res.redirect('/auth/signin');
+    }
+})
 
 sessionsRouter.route('/').get((req, res)=>{
     const url = "mongodb+srv://joseut76:uoFeCMnSWlRU9k2Y@cluster0.ziadrhk.mongodb.net?retryWrites=true&w=majority";

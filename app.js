@@ -11,8 +11,8 @@ import session from 'express-session'
 import sessionsRouter from './src/routers/sessionsRouter.js';
 import adminRouter from './src/routers/adminRouter.js';
 import authRouter from './src/routers/authRouter.js';
-
 import passportConfig from './src/config/passport.js';
+
 
 const debugApp = debug('app')
 const PORT = process.env.PORT || 4000
@@ -34,7 +34,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser())
 app.use(session({secret:'globomantics'}))
 
-const passConfig = passportConfig(app)
+// const passConfig = passportConfig(app)
+passportConfig(app)
 
 //app.set => set variables inside our environment app
 app.set('views', './src/views') 

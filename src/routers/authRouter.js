@@ -33,9 +33,9 @@ authRouter.route('/signUp').post((req, res)=>{
     })();
 });
 
-authRouter.route('/signin')
+authRouter.route('/signIn')
 .get((req, res)=>{
-res.render('/signin')
+res.render('signin')
 })
 .post(passport.authenticate('local', {
     successRedirect: '/auth/profile',
